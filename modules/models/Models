@@ -1,0 +1,53 @@
+@user
+email
+pass
+phone
+username
+birth
+gender
+name
+follower [count, id, id, ...]
+following [count, id, id, ...]
+type private, bussises, verfied, deactived, banned, deleted
+profile_img
+bio
+fav [count, [id. id, ...]
+categories
+selected_city
+
+@post
+user_id
+title
+cat; []
+date
+body
+photos
+type: normal, bussiness, archive, suggest
+incomers count,[]
+vote:{  
+  expire
+  response
+  [item:{count, id, id},
+   item:{count, id, id}]
+     }
+rate:{
+  count,
+  sum,
+  [id, rate]
+     }
+color
+lat, lng
+city
+
+@comments
+type: comment, advise
+commenter_id
+text
+reply_id
+date
+like {count{1:num, -1:num}, id, (-1,1) }
+
+@reports
+type: user, post, comment
+id
+reporter_id
