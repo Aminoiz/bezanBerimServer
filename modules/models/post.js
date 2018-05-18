@@ -5,7 +5,7 @@ const timestamps = require('mongoose-timestamp');
 const PostSchema = new Schema({
     user_id : { type : Schema.Types.ObjectId , ref : 'User' },
     title : { type : String , required : true },
-    categories: { type : Array , required : [] }, // [id, id, ...] categories_list.txt line
+    categories: { type : Array , default : [] }, // [id, id, ...] categories_list.txt line
     body: { type : String , required : true },
     photos: { type : Array , default : [] },
     type: { type : Number , default : 0 }, //0 normal, 1 bussiness, 2 archive, 3 suggest
