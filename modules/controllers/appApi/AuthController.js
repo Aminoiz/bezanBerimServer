@@ -43,6 +43,8 @@ module.exports = new class CourseController extends Controller {
         req.checkBody('email' , 'وارد کردن فیلد ایمیل الزامیست').notEmpty();
         req.checkBody('password' , 'وارد کردن فیلد پسورد الزامیست').notEmpty();
         req.checkBody('email' , 'فرمت اییمل وارد شده صحیح نیست').isEmail();
+        req.checkBody('phone' , ' کردن فیلد تلفن الزامیست').notEmpty();
+        req.checkBody('username' , 'وارد کردن فیلد یوزرنیم الزامیست').notEmpty();
 
         if(this.showValidationErrors(req, res))
             return;

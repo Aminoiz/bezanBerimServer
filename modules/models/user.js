@@ -12,10 +12,10 @@ const UserSchema = new Schema({
     gender: { type : Number , default : -1}, //-1 undefind, 0 male, 1 female, 2 etc
     name: { type : String , required : true},
     following: [{
-        type: Schema.Types.ObjectId, ref: 'Follow'
+        type: Schema.Types.ObjectId, ref: 'User'
     }],
     followers: [{
-        type: Schema.Types.ObjectId, ref: 'Follow'
+        type: Schema.Types.ObjectId, ref: 'User'
     }],
     type: { type : Number , default : 0}, //0 private, 1 bussiness, 2 verified, 3 deactived, 4 banned, 5 deleted
     profile_img: { type : String , default : "" }, // default will be default profile photo

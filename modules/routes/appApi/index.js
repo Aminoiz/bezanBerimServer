@@ -7,7 +7,8 @@ const apiAuth = require('./middleware/apiAuth');
 // Controllers
 const { controller } = config.path.app;
 const AuthController = require(`${controller}/AuthController`);
-const PostController = require(`${controller}/PostController`)
+const PostController = require(`${controller}/PostController`);
+const UserController = require(`${controller}/UserController`);
 
 // authentication
 router.post('/login' , AuthController.login.bind(AuthController));
@@ -18,5 +19,14 @@ router.get('/' , apiAuth, PostController.index.bind(PostController));
 
 // Post
 router.post('/post/:id' , apiAuth, PostController.add.bind(PostController));
+
+// Follow
+router.post('/follow/:id', apiAuth, UserController.follow.bind(UserController));
+// Unfollow
+router.post('/unfollow/:id', apiAuth, UserController.unfollow.bind(UserController));
+
+// User
+router.post('/users/:id', apiAuth, UserController.show.bind(UserController));
+
 
 module.exports = router;
