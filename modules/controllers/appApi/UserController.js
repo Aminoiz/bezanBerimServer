@@ -20,33 +20,54 @@ module.exports = new class UserController extends Controller{
   }
 
   follow(req, res) {
-    User.findById(req.body.follower, (err, user) => {
+    User.findById(req.body.follower, (err, followerUser) => {
       if (err) {
         res.send(err);
       }
-      user.followers.push(req.params.id);
-      user.save(err => {
+      User.findById(req.params.id, (err,followingUser) => {
         if (err) {
           res.send(err);
         }
-        res.json({ message: 'کاربر با موفقیت دنبال شد'});
+        followerUser.following.push(req.params.id);
+        followerUser.save(err => {
+          if (err) {
+            res.send(err);
+          }
+          followingUser.followers.push(req.body.follower);
+          followingUser.save(err => {
+            if (err) {
+              res.send(err);
+            }
+            res.json({ message: 'کاربر با موفقیت دنبال شد'});
+          });
+        });
       });
     });
   }
 
   unfollow(req, res) {
-    User.findById(req.body.follower, (err, user) => {
+    User.findById(req.body.follower, (err, followerUser) => {
       if (err) {
         res.send(err);
       }
-      user.followers = user.followers.filter(item => item.toString() !== req.params.id)
-      user.save(err => {
+      User.findById(req.params.id, (err,followingUser) => {
         if (err) {
           res.send(err);
         }
-        res.json({ message: 'کاربر با موفقیت از لیست حذف شد' });
+        followerUser.following = followerUser.followers.filter(item => item.toString() !== req.params.id)
+        followerUser.save(err => {
+          if (err) {
+            res.send(err);
+          }
+          followingUser.followers = followingUser.followers.filter(item => item.toString() !== req.body.follower)
+          followingUser.save(err => {
+            if (err) {
+              res.send(err);
+            }
+            res.json({ message: 'کاربر با موفقیت از لیست حذف شد'});
+          });
+        });
       });
     });
   }
-
 }
