@@ -1,13 +1,16 @@
 const Controller = require('./Controller')
 const Post = require(`${config.path.model}/post`);
+const User = require(`${config.path.model}/user`);
 
 module.exports = new class SampleController extends Controller {
     index(req , res) {
-      Post.find({}, (err, posts) => {
-        if(err){
-          res.send(err);
-        }
-        res.json(posts);
+      User.findById(req.params.id, (err, user) => {
+        Post.find({user_id:user.following}, (err, posts) => {
+          if(err){
+            res.send(err);
+          }
+          res.json(posts);
+        });
       });
     }
 
@@ -26,5 +29,5 @@ module.exports = new class SampleController extends Controller {
           });
     });
   }
-  
+
 }

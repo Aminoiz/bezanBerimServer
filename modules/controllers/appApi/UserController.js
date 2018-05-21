@@ -38,7 +38,7 @@ module.exports = new class UserController extends Controller{
             if (err) {
               res.send(err);
             }
-            res.json({ message: 'کاربر با موفقیت دنبال شد'});
+            res.json(followerUser);
           });
         });
       });
@@ -64,7 +64,7 @@ module.exports = new class UserController extends Controller{
             if (err) {
               res.send(err);
             }
-            res.json({ message: 'کاربر با موفقیت از لیست حذف شد'});
+            res.json(followerUser);
           });
         });
       });

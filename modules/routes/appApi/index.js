@@ -15,7 +15,7 @@ router.post('/login' , AuthController.login.bind(AuthController));
 router.post('/register' , AuthController.register.bind(AuthController));
 
 // Index
-router.get('/' , apiAuth, PostController.index.bind(PostController));
+router.get('/:id' , apiAuth, PostController.index.bind(PostController));
 
 // Post
 router.post('/post/:id' , apiAuth, PostController.add.bind(PostController));
