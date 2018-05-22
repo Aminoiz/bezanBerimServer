@@ -13,10 +13,7 @@ module.exports = new class UserController extends Controller{
           res.send(err);
         }
         res.json(user);
-      }).populate([
-        { path: 'following' },
-        { path: 'followers' }
-      ]);
+      });
   }
 
   follow(req, res) {

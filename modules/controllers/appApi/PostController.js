@@ -30,4 +30,18 @@ module.exports = new class SampleController extends Controller {
     });
   }
 
+    come(req, res) {
+      Post.findById(req.params.id, (err, post) => {
+        if(err){
+          res.send(err);
+        }
+        post.incomer.push(req.body.user);
+        post.save(err => {
+          if (err) {
+            res.send(err);
+          }
+          res.json(post);
+      });
+    });
+  }
 }

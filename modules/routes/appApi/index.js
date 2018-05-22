@@ -25,8 +25,11 @@ router.post('/follow/:id', apiAuth, UserController.follow.bind(UserController));
 // Unfollow
 router.post('/unfollow/:id', apiAuth, UserController.unfollow.bind(UserController));
 
-// User
-router.post('/users/:id', apiAuth, UserController.show.bind(UserController));
+// Dashboard
+router.post('/user/:id', apiAuth, UserController.show.bind(UserController));
+
+// Coming
+router.post('/post/coming/:id', apiAuth, PostController.come.bind(PostController));
 
 
 module.exports = router;

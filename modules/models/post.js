@@ -9,7 +9,7 @@ const PostSchema = new Schema({
     body: { type : String , required : true },
     photos: { type : Array , default : [] },
     type: { type : Number , default : 0 }, //0 normal, 1 bussiness, 2 archive, 3 suggest
-    incomer : { type : Object , default : {count:0} },  // {count:0, [id, id, ...]}
+    incomer : { type : Array , default : [] },  // {count:0, [id, id, ...]}
     vote: { type : Object , default : {expire: null, response: null} }, // {expire, response, [{text, count, [id, id, ...]}, item:{text, count, id, id}, ...]}
     rate: { type : Object , default : {count:0, sum:0} }, // {count, sum, [{count, id}, {count, id}, ...]}
     color: { type : String , default : "black" },
