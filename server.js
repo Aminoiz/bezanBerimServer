@@ -17,7 +17,7 @@ var mongoUser =  process.env.MONGODB_USER,
 mongoURL += mongoUser + ':' + mongoPassword + '@';
 mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
 
-mongoose.connect(mongoURL , { useMongoClient : true }););
+mongoose.connect(mongoURL);
 mongoose.Promise = global.Promise;
 //
 
