@@ -6,7 +6,7 @@ const expressValidator = require('express-validator');
 var useragent = require('express-useragent');
 global.config = require('./modules/config');
 
-// MongoDB
+// MongoDB openshift
 var mongoUser =  process.env.MONGODB_USER,
     mongoDatabase = process.env.MONGODB_DATABASE,
     mongoPassword = process.env.MONGODB_PASSWORD,
