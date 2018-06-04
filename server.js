@@ -7,7 +7,7 @@ var useragent = require('express-useragent');
 global.config = require('./modules/config');
 
 // Connect to DB
-mongoose.connect('mongodb://127.0.0.1:27017/bezanBerim' , { useMongoClient : true });
+mongoose.connect('mongodb://userHOP:8o27uX31uEStCM3L@mongodb/bezan-berim' , { useMongoClient : true });
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.urlencoded({ extended : false }));
