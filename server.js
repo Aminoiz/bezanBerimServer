@@ -6,9 +6,6 @@ const expressValidator = require('express-validator');
 var useragent = require('express-useragent');
 global.config = require('./modules/config');
 
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
-    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
-
 // MongoDB openshift
 var mongoUser =  process.env.MONGODB_USER,
     mongoDatabase = process.env.MONGODB_DATABASE,
@@ -40,7 +37,8 @@ app.use('/api/webApi/', webApiRouter)
 app.use('/api/adminApi/', adminApiRouter)
 app.use('/' , webRouter);
 
-app.listen(port, ip);
-console.log('nodejs server running on http://%s:%s', ip, port);
+app.listen(config.port , () => {
+    console.log(`Server running at Port ${config.port}`)
+});
 
 });
