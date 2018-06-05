@@ -40,5 +40,3 @@ app.use('/' , webRouter);
 app.listen(config.port , () => {
     console.log(`Server running at Port ${config.port}`)
 });
-
-});
