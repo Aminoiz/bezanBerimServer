@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    port : process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    port : 8080,
     secret : '&=L^XHy!MPw2e**#KAk3R@SMFT3nK+QGN2YkZkcaPPptEky4*PjhD@AaNz++*2Jr',
     path : {
         admin : {
