@@ -1,23 +1,13 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
 const expressValidator = require('express-validator');
 var useragent = require('express-useragent');
 global.config = require('./modules/config');
 
-// MongoDB openshift
-var mongoUser =  process.env.MONGODB_USER,
-    mongoDatabase = process.env.MONGODB_DATABASE,
-    mongoPassword = process.env.MONGODB_PASSWORD,
-    mongoHost = process.env.TAXCALCDB_SERVICE_HOST,
-    mongoPort = process.env.TAXCALCDB_SERVICE_PORT,
-    mongoURL = 'mongodb://';
-
-mongoURL += mongoUser + ':' + mongoPassword + '@';
-mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
-
-mongoose.connect(mongoURL);
+// Connect to DB
+mongoose.connect('mongodb://admin:?3tUdsw_F_@ds247310.mlab.com:47310/bezan-berimdb' , { useMongoClient : true });
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.urlencoded({ extended : false }));
