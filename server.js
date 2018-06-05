@@ -6,8 +6,18 @@ const expressValidator = require('express-validator');
 var useragent = require('express-useragent');
 global.config = require('./modules/config');
 
-// Connect to DB
-mongoose.connect('mongodb://127.0.0.1:27017/bezanBerim' , { useMongoClient : true });
+// MongoDB openshift
+var mongoUser =  process.env.MONGODB_USER,
+    mongoDatabase = process.env.MONGODB_DATABASE,
+    mongoPassword = process.env.MONGODB_PASSWORD,
+    mongoHost = process.env.TAXCALCDB_SERVICE_HOST,
+    mongoPort = process.env.TAXCALCDB_SERVICE_PORT,
+    mongoURL = 'mongodb://';
+
+mongoURL += mongoUser + ':' + mongoPassword + '@';
+mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
+
+mongoose.connect(mongoURL);
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.urlencoded({ extended : false }));
