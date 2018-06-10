@@ -8,7 +8,7 @@ const User = require(`${config.path.model}/user`);
 module.exports = new class UserController extends Controller{
 
   show(req, res) {
-      User.findById(req.params.id, (err, user) => {
+      User.findById(req.user._id, (err, user) => {
         if (err) {
           res.send(err);
         }
