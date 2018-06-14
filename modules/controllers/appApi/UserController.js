@@ -17,25 +17,25 @@ module.exports = new class UserController extends Controller{
   }
 
   follow(req, res) {
-    User.findById(req.body.follower, (err, followerUser) => {
+    User.findById(req.body.follower, (err, followedUser) => {
       if (err) {
         res.send(err);
       }
-      User.findById(req.params.id, (err,followingUser) => {
+      User.findById(req.user._id, (err, user) => {
         if (err) {
           res.send(err);
         }
-        followerUser.following.push(req.params.id);
-        followerUser.save(err => {
+        followedUser.followers.push(req.user._id);
+        followedUser.save(err => {
           if (err) {
             res.send(err);
           }
-          followingUser.followers.push(req.body.follower);
-          followingUser.save(err => {
+          user.following.push(req.body.follower);
+          user.save(err => {
             if (err) {
               res.send(err);
             }
-            res.json(followerUser);
+            res.json(user);
           });
         });
       });
@@ -43,25 +43,25 @@ module.exports = new class UserController extends Controller{
   }
 
   unfollow(req, res) {
-    User.findById(req.body.follower, (err, followerUser) => {
+    User.findById(req.body.follower, (err, unfollowedUser) => {
       if (err) {
         res.send(err);
       }
-      User.findById(req.params.id, (err,followingUser) => {
+      User.findById(req.user._id, (err, user) => {
         if (err) {
           res.send(err);
         }
-        followerUser.following = followerUser.followers.filter(item => item.toString() !== req.params.id)
-        followerUser.save(err => {
+        unfollowedUser.followers = followerUser.followers.filter(item => item.toString() !== req.user._id)
+        unfollowedUser.save(err => {
           if (err) {
             res.send(err);
           }
-          followingUser.followers = followingUser.followers.filter(item => item.toString() !== req.body.follower)
-          followingUser.save(err => {
+          user.following = user.following.filter(item => item.toString() !== req.body.follower)
+          user.save(err => {
             if (err) {
               res.send(err);
             }
-            res.json(followerUser);
+            res.json(user);
           });
         });
       });
