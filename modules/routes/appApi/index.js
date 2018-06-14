@@ -21,9 +21,9 @@ router.get('/' , apiAuth, PostController.index.bind(PostController));
 router.post('/post' , apiAuth, PostController.add.bind(PostController));
 
 // Follow
-router.post('/follow/:id', apiAuth, UserController.follow.bind(UserController));
+router.post('/follow', apiAuth, UserController.follow.bind(UserController));
 // Unfollow
-router.post('/unfollow/:id', apiAuth, UserController.unfollow.bind(UserController));
+router.post('/unfollow', apiAuth, UserController.unfollow.bind(UserController));
 
 // Dashboard/Profile
 router.get('/dashboard', apiAuth, UserController.show.bind(UserController));
