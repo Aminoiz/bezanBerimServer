@@ -63,15 +63,11 @@ module.exports = new class CourseController extends Controller {
                     })
                 } else {
                     throw err;
-                    return res.json({
-                        data : 'خطایی رخ داده است! دوباره تلاش کنید.',
-                        success : false
-                    })
                 }
             }
 
             return res.json({
-                data : new AuthTransform().transform(user),
+                data : 'کاربر با موفقیت عضو وبسایت شد',
                 success : true
             });
         })
