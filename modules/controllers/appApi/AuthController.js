@@ -58,16 +58,20 @@ module.exports = new class CourseController extends Controller {
             if(err) {
                 if(err.code == 11000) {
                     return res.json({
-                        data : 'ایمیل نمی تواند تکراری باشد',
+                        data : 'ایمیل، شماره همراه و نام کاربری نمی تواند تکراری باشد',
                         success : false
                     })
                 } else {
                     throw err;
+                    return res.json({
+                        data : 'خطایی رخ داده است! دوباره تلاش کنید.',
+                        success : false
+                    })
                 }
             }
 
             return res.json({
-                data : 'کاربر با موفقیت عضو وبسایت شد',
+                data : new AuthTransform().transform(user),
                 success : true
             });
         })
