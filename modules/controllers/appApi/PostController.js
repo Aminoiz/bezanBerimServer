@@ -43,7 +43,7 @@ module.exports = new class SampleController extends Controller {
                 data : err,
                 success : false
               })};
-            user.posts.push(newPost._id)
+            //user.posts.push(newPost._id)
             res.json({
                 data : 'پست با موفقیت ثبت شد',
                 success : true
