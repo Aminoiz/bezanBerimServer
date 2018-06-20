@@ -5,7 +5,10 @@ const User = require(`${config.path.model}/user`);
 module.exports = new class SampleController extends Controller {
     index(req , res) {
       User.findById(req.user._id, (err, user) => {
-        Post.find({user_id:user.following}, (err, posts) => {
+        Post.find({user_id:user.following})
+        .populate('User')
+        .exec()
+        .then((err, posts) => {
           if(err){
             res.json({
               data : err,
