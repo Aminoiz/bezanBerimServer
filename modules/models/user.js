@@ -17,6 +17,9 @@ const UserSchema = new Schema({
     followers: [{
         type: Schema.Types.ObjectId, ref: 'User'
     }],
+    posts: [{
+        type: Schema.Types.ObjectId, ref: 'Post'
+    }],
     type: { type : Number , default : 0}, //0 private, 1 bussiness, 2 verified, 3 deactived, 4 banned, 5 deleted
     profile_img: { type : String , default : "" }, // default will be default profile photo
     bio: { type : String , default : null},
