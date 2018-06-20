@@ -21,16 +21,14 @@ module.exports = new class SampleController extends Controller {
     }
 
     add(req, res) {
-      req.checkBody('title' , 'وارد کردن فیلد تیتر الزامیست').notEmpty();
       req.checkBody('body' , 'وارد کردن فیلد متن الزامیست').notEmpty();
 
-      this.escapeAndTrim(req , 'title body');
+      this.escapeAndTrim(req , 'body');
 
       if(this.showValidationErrors(req, res))
           return;
 
       this.model.Post({
-          title : req.body.title,
           body : req.body.body,
           user_id: req.user._id
       }).save(err => {
