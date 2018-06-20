@@ -7,9 +7,15 @@ module.exports = new class SampleController extends Controller {
       User.findById(req.user._id, (err, user) => {
         Post.find({user_id:user.following}, (err, posts) => {
           if(err){
-            res.send(err);
+            res.json({
+              data : err,
+              success : false
+            });
           }
-          res.json(posts);
+          res.json({
+              data : posts,
+              success : true
+          });
         });
       });
     }
@@ -29,7 +35,10 @@ module.exports = new class SampleController extends Controller {
           user_id: req.user._id
       }).save(err => {
           if(err) {
-            res.send(err);
+            res.json({
+              data : err,
+              success : false
+            });
           }
           res.json({
               data : 'پست با موفقیت ثبت شد',
@@ -46,9 +55,14 @@ module.exports = new class SampleController extends Controller {
         post.incomer.push(req.body.user);
         post.save(err => {
           if (err) {
-            res.send(err);
+            res.json({
+              data : err,
+              success : false
+            });
           }
-          res.json(post);
+          res.json({
+              success : true
+          });
       });
     });
   }
