@@ -25,9 +25,7 @@ module.exports = new class SampleController extends Controller {
 
     add(req, res) {
       req.checkBody('body' , 'وارد کردن فیلد متن الزامیست').notEmpty();
-
       this.escapeAndTrim(req , 'body');
-
       if(this.showValidationErrors(req, res))
           return;
 
@@ -41,26 +39,26 @@ module.exports = new class SampleController extends Controller {
         newPost.body = req.body.body;
         newPost.user_id = req.user._id;
         newPost.save(err => {
-            if(err) {
+          if(err) {
+            res.json({
+              data : err,
+              success : false
+            })};
+          user.posts.push(newPost._id);
+          user.save(err => {
+            if (err) {
               res.json({
                 data : err,
                 success : false
-              })};
-            user.posts.push(newPost._id);
-            user.save(err => {
-              if (err) {
-                res.json({
-                  data : err,
-                  success : false
-                });
-              }
-              res.json({
-                  data : 'پست با موفقیت ثبت شد',
-                  success : true
               });
+            }
+            res.json({
+              data : 'پست با موفقیت ثبت شد',
+              success : true
             });
           });
-      }
+        });
+      });
     }
 
     come(req, res) {
