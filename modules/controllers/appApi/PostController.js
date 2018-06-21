@@ -40,22 +40,18 @@ module.exports = new class SampleController extends Controller {
             data : err,
             success : false
           })};
-        savePost(newPost._id, req.user_id);
-        // res.json({
-        //   data : 'پست با موفقیت ثبت شد',
-        //   success : true
-        // });
+        res.redirect('/savePost/?postid' + newPost._id);
       });
     }
 
-    savePost(postId, userId) {
-      User.findById(userId, (err, user) => {
+    savePost(req, res) {
+      User.findById(req.user._id, (err, user) => {
         if(err) {
           res.json({
             data : err,
             success : false
           })};
-        user.posts.push(postId);
+        user.posts.push(req.query.postid);
         user.save(err => {
           if (err) {
             res.json({

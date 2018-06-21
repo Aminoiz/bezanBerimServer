@@ -20,6 +20,9 @@ router.get('/' , apiAuth, PostController.index.bind(PostController));
 // Post
 router.post('/post' , apiAuth, PostController.add.bind(PostController));
 
+// Save post
+router.post('/savePost' , apiAuth, PostController.savePost.bind(PostController));
+
 // Follow
 router.post('/follow', apiAuth, UserController.follow.bind(UserController));
 // Unfollow
