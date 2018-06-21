@@ -41,10 +41,10 @@ module.exports = new class SampleController extends Controller {
             success : false
           })};
         this.savePost(newPost._id, req.user_id);
-        res.json({
-          data : 'پست با موفقیت ثبت شد',
-          success : true
-        });
+        // res.json({
+        //   data : 'پست با موفقیت ثبت شد',
+        //   success : true
+        // });
       });
     }
 
