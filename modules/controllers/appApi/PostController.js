@@ -44,18 +44,18 @@ module.exports = new class SampleController extends Controller {
               data : err,
               success : false
             })};
-          user.posts.push(newPost._id);
-          user.save(err => {
-            if (err) {
-              res.json({
-                data : err,
-                success : false
-              });
-            }
+          });
+        user.posts.push(newPost._id);
+        user.save(err => {
+          if (err) {
             res.json({
-              data : 'پست با موفقیت ثبت شد',
-              success : true
+              data : err,
+              success : false
             });
+          }
+          res.json({
+            data : 'پست با موفقیت ثبت شد',
+            success : true
           });
         });
       });
