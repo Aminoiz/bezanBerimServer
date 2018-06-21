@@ -29,34 +29,19 @@ module.exports = new class SampleController extends Controller {
       if(this.showValidationErrors(req, res))
           return;
 
-      User.findById(req.user_id, (err, user) => {
+      let newPost = new Post();
+      newPost.body = req.body.body;
+      newPost.user_id = req.user._id;
+      newPost.save(err => {
         if(err) {
           res.json({
             data : err,
             success : false
           })};
-        let newPost = new Post();
-        newPost.body = req.body.body;
-        newPost.user_id = req.user._id;
-        newPost.save(err => {
-          if(err) {
-            res.json({
-              data : err,
-              success : false
-            })};
-          });
-        user.posts.push(newPost._id);
-        user.save(err => {
-          if (err) {
-            res.json({
-              data : err,
-              success : false
-            });
-          }
-          res.json({
-            data : 'پست با موفقیت ثبت شد',
-            success : true
-          });
+        res.json({
+          data : newPost._id,
+          succsess : true
+        });
       });
     }
 
