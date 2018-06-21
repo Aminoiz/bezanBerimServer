@@ -29,6 +29,8 @@ module.exports = new class SampleController extends Controller {
       if(this.showValidationErrors(req, res))
           return;
 
+      let postId;
+
       let newPost = new Post();
       newPost.body = req.body.body;
       newPost.user_id = req.user._id;
@@ -38,6 +40,7 @@ module.exports = new class SampleController extends Controller {
             data : err,
             success : false
           })};
+        postId = newPost._id;
         });
 
       User.findById(req.user_id, (err, user) => {
@@ -46,7 +49,7 @@ module.exports = new class SampleController extends Controller {
             data : err,
             success : false
           })};
-        user.posts.push(newPost._id);
+        user.posts.push(postId);
         user.save(err => {
           if (err) {
             res.json({
