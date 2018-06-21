@@ -40,7 +40,7 @@ module.exports = new class SampleController extends Controller {
             data : err,
             success : false
           })};
-        res.redirect('/savePost/?postid' + newPost._id);
+        res.redirect('/savePost/?postid=' + newPost._id);
       });
     }
 

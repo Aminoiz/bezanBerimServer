@@ -21,7 +21,7 @@ router.get('/' , apiAuth, PostController.index.bind(PostController));
 router.post('/post' , apiAuth, PostController.add.bind(PostController));
 
 // Save post
-router.get('/savePost/' , apiAuth, PostController.savePost.bind(PostController));
+router.get('/savePost' , apiAuth, PostController.savePost.bind(PostController));
 
 // Follow
 router.post('/follow', apiAuth, UserController.follow.bind(UserController));
