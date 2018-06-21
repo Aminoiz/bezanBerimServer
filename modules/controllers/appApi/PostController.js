@@ -45,6 +45,10 @@ module.exports = new class SampleController extends Controller {
               success : false
             })};
           });
+<<<<<<< HEAD
+=======
+        });
+>>>>>>> 73f3ccccecbeedaf423797f9b2594862d5563a30
         user.posts.push(newPost._id);
         user.save(err => {
           if (err) {
@@ -57,7 +61,6 @@ module.exports = new class SampleController extends Controller {
             data : 'پست با موفقیت ثبت شد',
             success : true
           });
-        });
       });
     }
 
