@@ -5,7 +5,7 @@ const User = require(`${config.path.model}/user`);
 module.exports = new class SampleController extends Controller {
     index(req , res) {
       User.findById(req.user._id, (err, user) => {
-        Post.find({user_id:user.following} || {user_id:req.user._id})
+        Post.find( { $or: [ { user_id: user.following }, { user_id: req.user._id } ] } )
         .populate('User')
         .exec()
         .then((err, posts) => {
