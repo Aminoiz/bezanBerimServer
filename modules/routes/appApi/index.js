@@ -32,7 +32,7 @@ router.post('/unfollow', apiAuth, UserController.unfollow.bind(UserController));
 router.get('/dashboard', apiAuth, UserController.show.bind(UserController));
 
 // Coming
-router.post('/post/coming/:post_id', apiAuth, PostController.come.bind(PostController));
+router.get('/post/coming/:post_id', apiAuth, PostController.come.bind(PostController));
 
 
 module.exports = router;
