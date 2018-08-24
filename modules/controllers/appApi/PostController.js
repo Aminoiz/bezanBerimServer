@@ -34,6 +34,8 @@ module.exports = new class SampleController extends Controller {
       let newPost = new Post();
       newPost.body = req.body.body;
       newPost.user_id = req.user._id;
+      newPost.user_username = req.user.username;
+      newPost.user_profile_img = req.user.profile_img;
       newPost.save(err => {
         if(err) {
           res.json({

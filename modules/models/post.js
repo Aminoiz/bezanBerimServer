@@ -4,6 +4,8 @@ const timestamps = require('mongoose-timestamp');
 
 const PostSchema = new Schema({
     user_id : { type : Schema.Types.ObjectId , ref : 'User' },
+    user_username : { type : String },
+    user_profile_img : { type : String , default : "" }, // default will be default profile photo
     categories: { type : Array , default : [] }, // [id, id, ...] categories_list.txt line
     body: { type : String , required : true },
     photos: { type : Array , default : [] },
