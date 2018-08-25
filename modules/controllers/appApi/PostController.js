@@ -74,7 +74,7 @@ module.exports = new class SampleController extends Controller {
         if(err){
           res.send(err);
         }
-        post.incomer.push(req.body.user);
+        post.incomer.push(req.user._id);
         post.save(err => {
           if (err) {
             res.json({
