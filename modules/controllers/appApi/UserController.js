@@ -16,6 +16,15 @@ module.exports = new class UserController extends Controller{
       });
   }
 
+  show_user(req, res) {
+    User.findById(req.params.user_id, (err, user) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json(user);
+    });
+  }
+
   follow(req, res) {
     User.findById(req.body.follower, (err, followedUser) => {
       if (err) {

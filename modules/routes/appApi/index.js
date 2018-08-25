@@ -30,6 +30,7 @@ router.post('/unfollow', apiAuth, UserController.unfollow.bind(UserController));
 
 // Dashboard/Profile
 router.get('/dashboard', apiAuth, UserController.show.bind(UserController));
+router.get('/profile/:user_id', apiAuth, UserController.show_user.bind(UserController));
 
 // Coming
 router.get('/post/coming/:post_id', apiAuth, PostController.come.bind(PostController));
