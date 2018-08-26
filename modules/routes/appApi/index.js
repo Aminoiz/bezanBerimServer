@@ -23,6 +23,9 @@ router.post('/post' , apiAuth, PostController.add.bind(PostController));
 // Save post
 router.get('/savePost' , apiAuth, PostController.savePost.bind(PostController));
 
+// Find
+router.get('/findUser/:username', apiAuth, UserController.findUser.bind(UserController));
+
 // Follow
 router.post('/follow', apiAuth, UserController.follow.bind(UserController));
 // Unfollow
@@ -30,7 +33,7 @@ router.post('/unfollow', apiAuth, UserController.unfollow.bind(UserController));
 
 // Dashboard/Profile
 router.get('/dashboard', apiAuth, UserController.show.bind(UserController));
-router.get('/profile/:user_id', apiAuth, UserController.show_user.bind(UserController));
+router.get('/profile/:user_id', apiAuth, UserController.showUser.bind(UserController));
 
 // Coming
 router.get('/post/coming/:post_id', apiAuth, PostController.come.bind(PostController));

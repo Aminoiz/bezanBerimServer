@@ -16,12 +16,27 @@ module.exports = new class UserController extends Controller{
       });
   }
 
-  show_user(req, res) {
+  showUser(req, res) {
     User.findById(req.params.user_id, (err, user) => {
       if (err) {
         res.send(err);
       }
       res.json(user);
+    });
+  }
+
+  findUser(req, res) {
+    User.find({'username': {'$regex': req.params.username, '$options': 'i'}} , (err, users) => {
+      if(err){
+        res.json({
+          data : err,
+          success : false
+        });
+      }
+      res.json({
+          data : users,
+          success : true
+      });
     });
   }
 
