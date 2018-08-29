@@ -49,19 +49,39 @@ module.exports = new class UserController extends Controller{
         if (err) {
           res.send(err);
         }
-        followedUser.followers.push(req.user._id);
-        followedUser.save(err => {
-          if (err) {
-            res.send(err);
-          }
-          user.following.push(req.body.follower);
-          user.save(err => {
+        if(!followedUser.followers.includes(req.user._id)){
+          followedUser.followers.push(req.user._id);
+          followedUser.save(err => {
             if (err) {
-              res.send(err);
+              res.json({
+                data : err,
+                success : false
+              });
             }
-            res.json(user);
+            if(!user.following.includes(req.body.follower)){
+              user.following.push(req.body.follower);
+              user.save(err => {
+                if (err) {
+                  res.json({
+                    data : err,
+                    success : false
+                  });
+                }
+                res.json({
+                    success : true
+                });
+              });
+            } else {
+              res.json({
+                  success : true
+              });
+            }
           });
-        });
+        } else {
+          res.json({
+              success : true
+          });
+        }
       });
     });
   }

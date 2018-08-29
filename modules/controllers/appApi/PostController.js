@@ -74,18 +74,24 @@ module.exports = new class SampleController extends Controller {
         if(err){
           res.send(err);
         }
-        post.incomer.push(req.user._id);
-        post.save(err => {
-          if (err) {
+        if(!post.incomer.includes(req.user._id)){
+          post.incomer.push(req.user._id);
+          post.save(err => {
+            if (err) {
+              res.json({
+                data : err,
+                success : false
+              });
+            }
             res.json({
-              data : err,
-              success : false
+                success : true
             });
-          }
+          });
+        } else {
           res.json({
               success : true
           });
+        }
       });
-    });
-  }
+    }
 }
